@@ -1,0 +1,309 @@
+<p-panel>
+    <!-- *************************************HEADER***************************************** -->
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Dispositivo {{dispositivo.IotDispositivo.ubicacion | titlecase}}</b> {{dispositivo.IotDispositivo.descripcion | titlecase}}</p>
+
+                </div>
+            </div>
+        </div>
+    </p-header>
+
+    <div _ngcontent-c2="" class="col-xs-12 col-sm-7 col-md-7">
+        <button _ngcontent-c2="" class="btn btnAdd" (click)="redireccion(2)"><img _ngcontent-c2="" class="icono-lateral" src="../../../../assets/images/dashboard.svg" > Seleccionar dispositivo </button>
+        <button _ngcontent-c2="" class="btn btnAdd" (click)="redireccion(1)"><img _ngcontent-c2="" class="icono-lateral" src="../../../../assets/images/ver_blanco.svg" > Historico </button>
+    </div>
+    <!-- *************************************FIN HEADER***************************************** -->
+    <br>
+    <br>
+    <div class="row" *ngIf="informacion">
+        <div class="col-md-2"></div>
+        <div class="alert card-ingreso col-md-8" style="padding: 2px" role="alert">
+            <div class="row">
+
+                <!--informacion.estado_elemento.estado &&-->
+                <div class="col-md-3" *ngIf="informacion.estado_elemento.id_tipo_elemento==1">
+                    <!--<img class="center-imagen" src="../../../../assets/images/vehiculo.png" style="padding:3px">-->
+                    <img class="center-imagen" src="{{informacion.elemento.IotElementoVehiculo.IotVehiculo.uri_foto}}" style="height: 100px;width: 100px;border-radius: 50%;padding:3px; object-fit: cover; object-position: center center;">
+                </div>
+                <!--informacion.estado_elemento.estado &&-->
+                <div class="col-md-3" *ngIf="informacion.estado_elemento.id_tipo_elemento==2" style="height: 60%">
+                    <img class="center-imagen" src="../../../../assets/images/libros.png">
+                </div>
+                <div class="col-md-9">
+                    <br>
+                    <h3 *ngIf="informacion.estado_elemento.estado && informacion.estado_elemento.id_tipo_elemento==1">Vehiculo ingresando - {{informacion.fecha_hora | date:"dd-MM-yyyy HH:mm:ss"}}</h3>
+                    <h3 *ngIf="!informacion.estado_elemento.estado && informacion.estado_elemento.id_tipo_elemento==1">Vehiculo Saliendo - {{informacion.fecha_hora | date:"dd-MM-yyyy HH:mm:ss"}}</h3>
+                    <p *ngIf="informacion.estado_elemento.id_tipo_elemento==1">Vehiculos de la universidad de nariño (LECTOR RFID {{dispositivo.IotDispositivo.descripcion | titlecase}}, {{dispositivo.IotDispositivo.ubicacion | titlecase}})</p>
+                    <h3 *ngIf="informacion.estado_elemento.estado && informacion.estado_elemento.id_tipo_elemento==2">Libro ingresando- {{informacion.fecha_hora | date:"dd-MM-yyyy HH:mm:ss"}}</h3>
+                    <h3 *ngIf="!informacion.estado_elemento.estado && informacion.estado_elemento.id_tipo_elemento==2">Libro saliendo - {{informacion.fecha_hora | date:"dd-MM-yyyy HH:mm:ss"}}</h3>
+                    <p *ngIf="informacion.estado_elemento.id_tipo_elemento==2">Libros de la universidad de nariño (LECTOR RFID {{dispositivo.IotDispositivo.descripcion | titlecase}}, {{dispositivo.IotDispositivo.ubicacion | titlecase}})
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="informacion">
+        <div class="col-md-2"></div>
+        <div class="card-ingreso-body col-md-2">
+
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488.33 768.91" style="height:90%; width:100%; padding:4px">
+              <defs>
+                <style>.cls-1{fill:url(#Degradado_sin_nombre_15);}.cls-2{fill:url(#Degradado_sin_nombre_9);}.cls-3{fill:url(#Degradado_sin_nombre_12);}</style>
+                <linearGradient id="Degradado_sin_nombre_15" x1="244.16" y1="-2.06" x2="244.16" y2="761.99" gradientUnits="userSpaceOnUse"><stop offset="0.53" stop-color="#008bbc"/><stop offset="1" stop-color="#004771"/></linearGradient>
+                <linearGradient id="Degradado_sin_nombre_9" y1="615.07" x2="488.33" y2="615.07" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00436a"/><stop offset="1" stop-color="#00517e"/></linearGradient>
+                <linearGradient id="Degradado_sin_nombre_12" y1="638.14" x2="488.33" y2="638.14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#003056"/><stop offset="1" stop-color="#003054"/></linearGradient>
+              </defs>
+              <title>fondo_carnet</title>
+              <g id="Capa_2" data-name="Capa 2">
+                <g id="Capa_1-2" data-name="Capa 1">
+                  <rect class="cls-1" width="488.33" height="768.91"/>
+                  <path class="cls-2" d="M488.33,506.5s-74.83,84-224.17,118c-72.5,12.83-158.5,10.76-264.16,4.75v46.39s184.93,13,305.29,33.29c87.44,14.71,183,14.71,183,14.71Z"/>
+                  <path class="cls-3" d="M488.33,705.35S367,713,303.86,703.68C209.23,689.78,0,665.43,0,665.43V642c118.64,1.1,232.41,4,313.66-11.33C428.74,609,488.33,568,488.33,568Zm0-137.35V705.35"/>
+                </g>
+                </g>
+                <image xlink:href="http://sapiens.udenar.edu.co/cdn/images/logo_udenar_carnet.svg" y=10 width=100% height=20% />
+                <text *ngIf="informacion.estado_elemento.id_tipo_elemento==1 && informacion.elemento" x="50%" y="75%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="Verdana"
+                    font-size="30"
+                    fill="white">
+                    {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_nombre}}
+              </text>
+              <text *ngIf="informacion.estado_elemento.id_tipo_elemento==1 && informacion.elemento" x="50%" y="80%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="Verdana"
+                    font-size="30"
+                    fill="white">
+                    {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_apellido}}
+                    {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_apellido}}
+              </text>
+              <text *ngIf="informacion.estado_elemento.id_tipo_elemento==1 && informacion.elemento" x="50%" y="85%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="Verdana"
+                    font-size="30"
+                    fill="white">
+                    {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.num_identificacion}}
+              </text>
+              <text *ngIf="informacion.estado_elemento.id_tipo_elemento==2 && informacion.elemento" x="50%" y="75%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="Verdana"
+                    font-size="30"
+                    fill="white">
+                    {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.segundo_nombre}}
+              </text>
+              <text *ngIf="informacion.estado_elemento.id_tipo_elemento==2 && informacion.elemento" x="50%" y="80%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="Verdana"
+                    font-size="30"
+                    fill="white">
+                    {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.primer_apellido}}
+                    {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.segundo_apellido}}
+              </text>
+              <text *ngIf="informacion.estado_elemento.id_tipo_elemento==2 && informacion.elemento" x="50%" y="85%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="Verdana"
+                    font-size="30"
+                    fill="white">
+                    {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.num_identificacion}}
+              </text>
+              </svg>
+        </div>
+        <div class="card-ingreso-body col-md-6" role="alert">
+            <div class="row">
+                <div class="col-md-9" *ngIf="informacion.estado_elemento.id_tipo_elemento==1">
+                    <br><br>
+                    <p><b>Código RFID: </b><span class='badge badge-secondary'>{{informacion.estado_elemento.numero_etiqueta}}</span></p><br>
+                    <p><b>Placa: </b><span class='badge badge-info'>{{informacion.elemento.IotElementoVehiculo.IotVehiculo.placa}}</span></p><br>
+                    <p><b>Modelo: </b><span class='badge badge-primary'>
+                        {{informacion.elemento.IotElementoVehiculo.IotVehiculo.marca}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.linea}}
+                    </span></p><br>
+                    <p><b>Propietario: </b><span class='badge badge-success'>
+                        {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_apellido}}
+                        {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_apellido}}
+                    </span></p><br>
+                    <p><b>Identificacion propietario: </b><span class='badge badge-danger'>{{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.num_identificacion}}</span></p><br>
+
+                </div>
+                <!-- <div class="col-md-4" *ngIf="informacion.estado_elemento.id_tipo_elemento==1 && informacion.elemento">
+                    <span class='badge badge-secondary'>{{informacion.estado_elemento.numero_etiqueta}}</span><br><br>
+                    <span class='badge badge-info'>{{informacion.elemento.IotElementoVehiculo.IotVehiculo.placa}}</span><br><br>
+                    <span class='badge badge-primary'>
+                        {{informacion.elemento.IotElementoVehiculo.IotVehiculo.marca}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.linea}}
+                    </span><br><br>
+                    <span class='badge badge-success'>
+                        {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_apellido}}
+                        {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_apellido}}
+                    </span><br><br>
+                    <span class='badge badge-danger'>{{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.num_identificacion}}</span><br><br>
+                </div> -->
+                <div class="col-md-9" *ngIf="informacion.estado_elemento.id_tipo_elemento==2">
+                    <br>
+                    <p><b>Código RFID: </b> <span class='badge badge-secondary'>{{informacion.estado_elemento.numero_etiqueta}}</span></p><br>
+                    <p><b>Codigo QR: </b> <span class='badge badge-info'>{{informacion.elemento.IotElemetoBien.AlmacBien.qr_etiqueta}}</span></p><br>
+                    <p><b>Detalle: </b> {{informacion.elemento.IotElemetoBien.AlmacBien.detalle}}</p><br>
+                    <p><b>Ubicación: </b> {{informacion.elemento.IotElemetoBien.AlmacBien.ubicacion_detalle}}</p><br>
+                    <p><b>Observaciones: </b> {{informacion.elemento.IotElemetoBien.AlmacBien.observaciones}}</p><br>
+                    <p><b>Propietario: </b> <span class='badge badge-success'>
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.segundo_nombre}} {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.primer_apellido}}
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.segundo_apellido}}
+                    </span></p><br>
+                    <p><b>Identificacion propietario: </b> <span class='badge badge-danger'>{{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.num_identificacion}}</span></p><br>
+
+                </div>
+                <!--          <div class="col-md-4" *ngIf="informacion.estado_elemento.id_tipo_elemento==2 && informacion.elemento">
+                    <span class='badge badge-secondary'>{{informacion.estado_elemento.numero_etiqueta}}</span><br><br>
+                    <span class='badge badge-info'>{{informacion.elemento.IotElemetoBien.AlmacBien.qr_etiqueta}}</span><br><br>
+                    <p>
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.detalle}}
+                    </p><br><br>
+                    <p>
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.ubicacion_detalle}}
+                    </p><br><br>
+                    <p>
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.observaciones}}
+                    </p><br><br>
+                    <span class='badge badge-success'>
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.segundo_nombre}} {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.primer_apellido}}
+                        {{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.segundo_apellido}}
+                    </span><br><br>
+                    <span class='badge badge-danger'>{{informacion.elemento.IotElemetoBien.AlmacBien.TalenEmpleadoCargo.GenerPersona.num_identificacion}}</span><br><br>
+                </div> -->
+                <!--  <div class="col-md-3" max-width="30px">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488.33 768.91" style="height:90%; width:100%; padding:2px">
+                      <defs>
+                        <style>.cls-1{fill:url(#Degradado_sin_nombre_15);}.cls-2{fill:url(#Degradado_sin_nombre_9);}.cls-3{fill:url(#Degradado_sin_nombre_12);}</style>
+                        <linearGradient id="Degradado_sin_nombre_15" x1="244.16" y1="-2.06" x2="244.16" y2="761.99" gradientUnits="userSpaceOnUse"><stop offset="0.53" stop-color="#008bbc"/><stop offset="1" stop-color="#004771"/></linearGradient>
+                        <linearGradient id="Degradado_sin_nombre_9" y1="615.07" x2="488.33" y2="615.07" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00436a"/><stop offset="1" stop-color="#00517e"/></linearGradient>
+                        <linearGradient id="Degradado_sin_nombre_12" y1="638.14" x2="488.33" y2="638.14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#003056"/><stop offset="1" stop-color="#003054"/></linearGradient>
+                      </defs>
+                      <title>fondo_carnet</title>
+                      <g id="Capa_2" data-name="Capa 2">
+                        <g id="Capa_1-2" data-name="Capa 1">
+                          <rect class="cls-1" width="488.33" height="768.91"/>
+                          <path class="cls-2" d="M488.33,506.5s-74.83,84-224.17,118c-72.5,12.83-158.5,10.76-264.16,4.75v46.39s184.93,13,305.29,33.29c87.44,14.71,183,14.71,183,14.71Z"/>
+                          <path class="cls-3" d="M488.33,705.35S367,713,303.86,703.68C209.23,689.78,0,665.43,0,665.43V642c118.64,1.1,232.41,4,313.66-11.33C428.74,609,488.33,568,488.33,568Zm0-137.35V705.35"/>
+                        </g>
+                        </g>
+                        <image xlink:href="http://sapiens.udenar.edu.co/cdn/images/logo_udenar_carnet.svg" y=10 width=100% height=20% />
+                        <text *ngIf="informacion.elemento" x="50%" y="70%" dominant-baseline="middle" text-anchor="middle"
+                            font-family="Verdana"
+                            font-size="30"
+                            fill="white">
+                            {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_nombre}} {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.primer_apellido}}
+                            {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.segundo_apellido}}
+                      </text>
+                      <text *ngIf="informacion.elemento" x="50%" y="80%" dominant-baseline="middle" text-anchor="middle"
+                            font-family="Verdana"
+                            font-size="30"
+                            fill="white">
+                            {{informacion.elemento.IotElementoVehiculo.IotVehiculo.GenerPersona.num_identificacion}}
+                      </text>
+                      </svg>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--<p-table #dt [columns]="cols" [value]="ingresos" [responsive]="true" [resizableColumns]="true" [paginator]="true" [rows]="10" columnResizeMode="expand" dataKey="id_registro_rfid">
+
+
+        <ng-template pTemplate="caption">
+            <div class="row">
+                <!-- *********  SELECCIONAR AÑO *********** ->
+                <div class="col-xs-12 col-sm-5 col-md-4 no-padding">
+
+                </div>
+                <!-- ********FIN SELECCIONAR AÑO *********** ->
+                <div class="col-xs-12 col-sm-5 col-md-4 no-padding"></div>
+                <!-- ********** BUSCADOR  *********** ->
+                <div class="col-xs-12 col-sm-4 col-md-4 no-padding fix-padding">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                  <i class="fa fa-search"></i>
+                </span>
+                        </div>
+                        <input class="form-control" id="input1-group1" type="text" name="input1-group1" placeholder="Buscar" autocomplete="username" (input)="dt.filterGlobal($event.target.value, 'contains')">
+                    </div>
+                </div>
+                <!-- ******* FIN BUSCADOR  *********** ->
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+            <!-- *********************************************TABLE HEADER *************************************** ->
+            <tr>
+                <th pSortableColumn="id_registro_rfid" pResizableColumn>
+                    # ingreso
+                    <p-sortIcon field="id_registro_rfid" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="fecha_hora" pResizableColumn>
+                    Fecha registro
+                    <p-sortIcon field="fecha_hora" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="fecha_hora" pResizableColumn>
+                    Elemento
+                    <p-sortIcon field="fecha_hora" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <!--
+                <th pSortableColumn="fecha_hora" pResizableColumn>
+                    Identificacón propietario
+                    <p-sortIcon field="fecha_hora" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="fecha_hora" pResizableColumn>
+                    Nombre propietario
+                    <p-sortIcon field="fecha_hora" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                -->
+    <!-- <th class="td-opt"></th> ->
+            </tr>
+            <!-- *******************************************FIN TABLE HEADER *************************************** -->
+
+    <!-- ******************************************** TABLE FILTER *************************************** -->
+    <!--  <tr>
+             <th [ngSwitch]="'id_registro_rfid'">
+            <p-dropdown *ngSwitchCase="'id_registro_rfid'" appendTo="body" [options]="unidades" [style]="{'width':'100%'}"
+              (onChange)="dt.filter($event.value,'nombre_unidad', 'equals')">
+            </p-dropdown>
+          </th>
+            <th class="td-opt"></th>
+        </tr> -->
+    <!-- ******************************************* FIN TABLE FILTER *************************************** ->
+        </ng-template>
+
+        <!-- ******************************************** TABLE BODY *************************************** ->
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td>{{rowData.id_registro_rfid}}</td>
+                <td>{{rowData.fecha_hora | date: 'yyyy/MM/dd HH:MM'}}</td>
+                <td *ngIf="rowData.IotElemento.IotElementoVehiculo">Placa vehiculo:&nbsp;{{rowData.IotElemento.IotElementoVehiculo.IotVehiculo.placa}}</td>
+                <td *ngIf="rowData.IotElemento.IotElemetoBien">Detalle bien:&nbsp;{{rowData.IotElemento.IotElemetoBien.AlmacBien.detalle}}</td>
+                <!--<td *ngIf="rowData.IotElemento.IotElementoVehiculo">{{rowData.IotElemento.IotElementoVehiculo.SegurUsuario.identificacion}}</td>
+                <td *ngIf="rowData.IotElemento.IotElementoVehiculo">{{rowData.IotElemento.IotElementoVehiculo.SegurUsuario.nombre}} {{rowData.IotElemento.IotElementoVehiculo[0].SegurUsuario.apellido}}</td>->
+            </tr>
+        </ng-template>
+        <!-- ******************************************* FIN TABLE BODY *************************************** ->
+    </p-table>
+</p-panel>
+<!-- <p-table [columns]="cols" [value]="ingresos" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table> -->

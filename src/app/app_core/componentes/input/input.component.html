@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label class="control-label"><span class="icon-err fa fa-question-circle" tooltip={{xtooltip}}></span>  {{titulo}}<span *ngIf="control?.hasError('required')">*</span></label>
+
+  <input #input type="{{xtype}}" class="form-control" [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)"
+    placeholder="{{xplaceholder}}" (keyup)="changeInput(input.value)" (change)="changeInput(input.value)"
+    (click)="changeInput(input.value);" value={{inputVal}} [attr.min]="xmin" [attr.max]="xmax"
+    [attr.minlength]="xminlength" [attr.maxlength]="xmaxlength" [disabled]="xdisabled == true"
+    [readOnly]="xreadOnly == 'true'" validfield onlyNumber  [isCurrency]="xcurrency" [isNumber]='isNumber' [xtype]=xtype >
+
+  <div class='error_section'>
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true)">
+      <div #content>* {{getError(control.errors)}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.card-ingreso {
+    h3,
+    p {
+        font: bold;
+        color: white;
+    }
+    background-color: #fbb03b;
+    margin: 0%;
+    //border: 1px solid black;
+}
+
+.card-ingreso-body {
+    background-color: whitesmoke;
+    margin: 0%;
+    padding-left: 1%;
+    //border: 1px solid black;
+}
+
+.center-imagen {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

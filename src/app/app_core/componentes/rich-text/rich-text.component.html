@@ -1,0 +1,20 @@
+<div class="form-group">
+  <label class="control-label"><span class="fa fa-question-circle" tooltip={{xtooltip}}></span>{{titulo}}<span *ngIf="control?.hasError('required')">*</span></label>
+
+  <div [class.rich-text]="!control?.valid  && (control?.dirty || xform?.submited == true)" *ngIf="onlyView == false">
+    <quill-editor [readOnly]='xreadOnly' [modules]="module" placeholder="" [(ngModel)]="inputVal"
+      (ngModelChange)="changeInput($event)">
+    </quill-editor>
+  </div>
+
+  <div *ngIf="onlyView == true" class="border-rich-text" >
+    <quill-editor [(ngModel)]="inputVal" [readOnly]="true" placeholder="" [modules]="{toolbar: false}" class="editor" readOnly>
+    </quill-editor>
+  </div>
+
+  <div class='error_section' *ngIf="onlyView == false">
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true)">
+      <div #content>* {{getError(control.errors)}}</div>
+    </div>
+  </div>
+</div>

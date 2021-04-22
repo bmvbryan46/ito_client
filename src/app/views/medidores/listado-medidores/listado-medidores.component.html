@@ -1,0 +1,49 @@
+<!-- <p-carousel [value]="elements" numVisible="{{carousel.numVisible}}" easing="easeOutStrong" headerText="{{carousel.title}}">
+    <ng-template let-item pTemplate="item">
+        <p-card title="{{item.nombre}}" subtitle="{{item.IotMarcaDispositivoMedida.IotTipoDispositivo.nombre}}" styleClass="ui-card-shadow">
+            <p-header class="center-imagen card-header">
+                <img src="Card" src="../../../../assets/images/medidor.png">
+            </p-header>
+            <p-footer>
+                <button pButton type="button" label="{{carousel.btnM}}" icon="fa fa-fw fa-bar-chart" (click)="goToMonitoring(item)"></button> &nbsp;
+                <button pButton type="button" label="{{carousel.btnH}}" icon="fa fa-fw fa-file-excel-o" (click)="goToHistorics(item)"></button>
+            </p-footer>
+        </p-card>
+    </ng-template>
+</p-carousel> -->
+
+<p-panel>
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Listado de medidores</b></p>
+
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <agm-map #gm [latitude]='latitude' [longitude]='longitude' [zoom]="18">
+        <agm-marker [label]="labelOptions" [iconUrl]="iconUrl" [latitude]="latitude" [longitude]='longitude'>
+        </agm-marker>
+        <agm-marker #m (mouseOver)="onMouseOver(infoWindow,gm,medidor)" (mouseOut)="onMouseOut(medidor)" [animation]="medidor.animation" [label]="medidor.labelOptions" [iconUrl]="medidor.iconUrl" *ngFor="let medidor of elements" [latitude]="medidor.ubicacion.x" [longitude]='medidor.ubicacion.y'
+            (click)="goToMonitoring(medidor)">
+            <agm-info-window #infoWindow>
+
+                <div>
+                    <h6><b>{{medidor.nombre}}</b></h6>
+                    <small><b>{{medidor.IotMarcaDispositivoMedida.IotTipoDispositivo.descripcion}}</b> -{{medidor.IotMarcaDispositivoMedida.IotTipoDispositivo.descripcion}}</small>
+                </div>
+                <br>
+                <div>
+                    <button pButton type="button" label="{{carousel.btnH}}" icon="fa fa-fw fa-file-excel-o" (click)="goToHistorics(medidor)"></button>&nbsp;
+                    <button pButton type="button" label="{{carousel.btnM}}" icon="fa fa-fw fa-bar-chart" (click)="goToMonitoring(medidor)"></button>
+                </div>
+
+            </agm-info-window>
+        </agm-marker>
+        <agm-marker [label]="labelOptions2" [iconUrl]="iconUrl" [latitude]="latitude2" [longitude]='longitude2'>
+        </agm-marker>
+    </agm-map>
+</p-panel>

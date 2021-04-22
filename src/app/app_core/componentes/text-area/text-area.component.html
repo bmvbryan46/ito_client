@@ -1,0 +1,16 @@
+<div class="form-group">
+
+  <label class="control-label"><span class="fa fa-question-circle" tooltip={{xtooltip}}></span>{{titulo}}<span
+      *ngIf="control?.hasError('required')">*</span></label>
+
+  <textarea #textarea class="form-control" [ngStyle]="{'height': (textarea.scrollHeight + 2) + 'px' }"
+    [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)"
+    (keyup)="changeInput(textarea.value)" (change)="changeInput(textarea.value)" (click)="changeInput(textarea.value);"
+    [disabled]="xdisabled == true" [attr.minlength]="xminlength" [attr.maxlength]="xmaxlength"
+    [readOnly]="xreadOnly == 'true'" validfield></textarea>
+  <div class='error_section'>
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true)">
+      <div #content>* {{getError(control.errors)}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label class="control-label"><span class="fa fa-question-circle" tooltip={{xtooltip}}></span>{{titulo}}<span *ngIf="control?.hasError('required')">*</span></label>
+
+  <div class="form-control date-content"
+    [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)">
+    <input #input type="text" class="form-date" (onHidden)="changeInput(input.value,1)" placeholder="{{xplaceholder}}"
+      [attr.showHora]="showHora" (click)="changeInput(input.value,1);isTouch=true" [disabled]="xdisabled == true"
+      value={{inputVal}} bsDatepicker readonly  [minDate]="xminDate" [maxDate]="xmaxDate" >
+
+    <div class='show_time' *ngIf="showHora == true" title="Hora" (click)="isShowHora = !isShowHora; isClick=true">
+      <span class="fa fa-clock-o"></span>
+    </div>
+
+    <div class='clear_date' (click)='clear()'>X</div>
+  </div>
+
+  <div *ngIf="isShowHora == true" (clickOutside)='outside()' class="dropdown_hora">
+    <timepicker #time [(ngModel)]="hora" (ngModelChange)="changeHora()"></timepicker>
+  </div>
+
+  <div class='error_section'>
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true)">
+      <div #content>* {{getError(control.errors)}}</div>
+    </div>
+  </div>
+</div>

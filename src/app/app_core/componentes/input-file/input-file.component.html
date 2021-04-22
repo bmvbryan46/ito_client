@@ -1,0 +1,52 @@
+<!-- SECCION PARA FOTOGRAFIA -->
+<div *ngIf="isphoto == true" class='seccion-foto'>
+
+  <div class="div-foto" [class.invalidInputImg]="!control?.valid  && (control?.dirty || xform?.submited == true)">
+    <div #divclear class="clear_photo" (click)="clear_photo(divfoto,inputp)"><img src="{{cdn}}/images/cancelar.svg">
+    </div>
+    <div #divfoto class="msj-photo" (click)="openFile(inputp)" [class.err-msj]="sizeError == true"> {{msj}} </div>
+  </div>
+  <input #inputp type="file" accept={{xaccept}} (change)="photoChange($event,divfoto)" [disabled]="xdisabled == true">
+</div>
+<!--FIN SECCION PARA FOTOGRAFIA -->
+
+<!-- SECCION PARA ARCHIVOS -->
+<div class="form-group" *ngIf="isphoto == false">
+
+  <label class="control-label"><span class="fa fa-question-circle" tooltip={{xtooltip}}></span>{{titulo}}<span
+      *ngIf="control?.hasError('required')">*</span></label>
+  <div></div>
+
+  <div class="uploader" [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)"
+    [ngClass]="{'uploader-disabled': xdisabled == true}">
+    <img src="{{cdn}}/images/cargar.svg" class="icono_cargar">
+    <label [for]="xid">
+      <div [ngClass]="{'input_title': input_title != i_title, 'input_title_2': input_title == i_title}">
+        {{input_title}}
+      </div>
+    </label>
+    <input #input type="file" [id]="xid" accept={{xaccept}} (change)="imageChange($event)"
+      [disabled]="xdisabled == true" [multiple]="xmultiple == 'true'">
+    <div class='clear_file'  *ngIf="xdisabled == false"  (click)='clear()'>X</div>
+  </div>
+  <div class="error_section">
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true) && minFiles == 0">
+      <div #content>* {{getError(control?.errors)}}</div>
+    </div>
+    <div *ngIf="xmultiple == 'true' && minFiles > 0" class='error_style'>
+      * Faltan {{minFiles}} de archivos por cargar
+    </div>
+    <div *ngIf="xmultiple == 'true' && minFiles < 0" class='error_style'>
+      * Solo se permiten {{xnumfiles}} archivos
+    </div>
+    <div *ngIf="sizeError == true" class='error_style'>
+      * El tamaño debe ser menor {{xsize}} mb
+    </div>
+  </div>
+  <div *ngIf="nameFiles.length > 0" class="list_files">
+    <label *ngFor="let item of nameFiles;let i = index">
+      {{item}}<span *ngIf="i != nameFiles.length - 1"> &nbsp; - &nbsp;</span>
+    </label>
+  </div>
+</div>
+<!--FIN SECCION PARA ARCHIVOS -->

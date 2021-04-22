@@ -1,0 +1,45 @@
+<p-panel>
+    <!-- *************************************HEADER***************************************** -->
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Monitoreo estación metereológica</b></p>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <!-- *************************************FIN HEADER***************************************** -->
+    <br>
+
+    <div>
+        <div>
+            <div style="display: block">
+                <canvas baseChart width="400" height="100" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+            </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex">
+        <div class="flex-item">
+            <div style="display: block;">
+                <canvas baseChart width="400" height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+        <div class="flex-item">
+            <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <div style="display: block">
+                <canvas width="400" height="100" baseChart [datasets]="radarChartData" [options]="radarChartOptions" [labels]="radarChartLabels" [chartType]="radarChartType">
+            </canvas>
+            </div>
+        </div>
+    </div>
+</p-panel>

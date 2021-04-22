@@ -1,0 +1,16 @@
+<div class='form-group'>
+  <label class="control-label"><span class="fa fa-question-circle" tooltip={{xtooltip}}></span>{{titulo}}<span
+      *ngIf="control?.hasError('required')">*</span></label>
+  <select #select class='form-control form-select'
+    [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)"
+    (change)="changeInput(select.value)" [disabled]="xdisabled == true">
+    <option value='' selected>Seleccione...</option>
+    <option [value]="item[xval]" [selected]="item[xval] == valSel" *ngFor="let item of data">{{item[xopt]}}
+    </option>
+  </select>
+  <div class="error_section">
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true)">
+      * Seleccione una opción
+    </div>
+  </div>
+</div>

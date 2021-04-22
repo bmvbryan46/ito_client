@@ -1,0 +1,377 @@
+.error_section {
+  height: 18px;
+}
+
+.error_style {
+  font-family: helveticamendium !important;
+  font-size: 9pt;
+  color: #f86c6b;
+}
+
+.control-label {
+  color: #4d4d4d;
+  font-family: helveticabold !important;
+  font-size: 10pt !important;
+  text-decoration: none;
+  margin-left: 1.2px;
+}
+
+.control-label-err {
+  color: #f86c6b;
+}
+
+.invalidInput {
+  border-color: #f86c6b !important;
+}
+
+.invalidInput:focus {
+  color: #5c6873;
+  background-color: #fff;
+  border-color: #f86c6b;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(248, 108, 107, 0.25);
+}
+
+.form-control[readonly] {
+  background-color: white;
+  opacity: 1;
+  cursor: auto;
+}
+
+.form-control[readonly]:focus {
+  border-color: #e4e7ea;
+  box-shadow: initial;
+}
+
+/**************************SELECT*************************/
+
+.form-select {
+  option {
+    font-family: helveticanormal;
+    font-size: small;
+  }
+}
+
+/************************FIN SELECT***********************/
+
+/************************INPUT FILE***********************/
+
+.uploader input {
+  display: none;
+}
+
+#upload {
+  display: none;
+}
+
+.uploader {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  height: calc(2.0625rem + 2px);
+  border-radius: 5px;
+  max-width: 100%;
+}
+
+.uploader-disabled{
+  cursor: default;
+  background-color: #e4e7ea;
+  .input_title{
+    cursor: default !important;
+
+    font-size: 10pt !important;
+  }
+
+  .input_title_2{
+    cursor: default !important;
+    font-size: 10pt !important;
+  }
+}
+
+.uploader label {
+  width: calc(100% - 40px);
+}
+
+.input_title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.input_title:hover {
+  font-size: 11pt;
+}
+
+.input_title_2 {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.input_title_2:hover {
+  font-size: 11pt;
+}
+
+.list_files {
+  border: 1px solid #e4dcdc;
+  border-radius: 3px;
+  padding: 3px;
+  font-family: helveticaitalic !important;
+  font-size: 10pt !important;
+  color: #4d4d4d !important;
+}
+
+.input_disabled {
+  color: grey;
+}
+
+.clear_file {
+  text-align: center;
+  color: #e20101;
+  float: right;
+  width: 10px;
+  padding-left: 5px;
+}
+
+.clear_file:hover {
+  font-size: medium;
+}
+
+.icono_cargar {
+  float: left;
+  width: 26px;
+  padding-right: 4px;
+}
+
+.seccion-foto {
+  input {
+    display: none;
+  }
+}
+
+.div-foto {
+  height: 185px;
+  width: 150px;
+  border: 1px solid #afafaf;
+  margin: auto;
+  background-color: #8080802e;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: table;
+  position: relative;
+}
+
+.div-foto:hover {
+  transform: scale(1.03);
+  .clear_photo {
+    display: block;
+  }
+}
+
+.msj-photo {
+  height: 100%;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.err-msj {
+  color: #f86c6b;
+}
+
+.clear_photo {
+  display: none;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  right: -10px;
+  top: -10px;
+  box-shadow: 0px 0px 16px 1px rgba(146, 3, 3, 0.57);
+  border-radius: 10px;
+}
+
+.clear_photo:hover {
+  transform: scale(1.03);
+}
+
+.invalidInputImg {
+  border-color: #f86c6b;
+  color: #f86c6b;
+}
+
+/***********************FIN INPUT FILE***********************/
+
+/****ACOMPLETE********/
+
+.pos-rel {
+  position: relative;
+  .simple {
+    font-size: 8pt;
+  }
+}
+
+.dropdown_container {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  min-height: 84px;
+  max-height: 300px;
+  background: white;
+  box-shadow: 0px 3px 10px #a2a2a2;
+  overflow-y: auto;
+}
+
+.state {
+  padding: 10px;
+  border-bottom: 1px solid rgb(196, 192, 192);
+  font-family: helveticanormal;
+  font-size: x-small;
+}
+
+.state_first {
+  border-top: 1px solid rgb(196, 192, 192);
+}
+
+.state:hover {
+  background: #2fa0876e;
+  cursor: pointer;
+}
+
+.title_style {
+  border-bottom: 1px solid #7080904a;
+  font-size: 9pt;
+}
+
+.without_Border {
+  border-bottom: 0px solid white;
+}
+
+.subtitle_style {
+  display: inline;
+  font-size: 8pt;
+}
+
+.acomplete_search {
+  margin-left: 3px;
+}
+
+/****FIN ACOMPLETE********/
+
+/****INPUT DATE *******/
+
+.date-content {
+  padding: 0;
+}
+
+.date-content:active {
+  color: #5c6873;
+  background-color: #fff;
+  border-color: #8ad4ee;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(32, 168, 216, 0.25);
+}
+
+.dropdown_hora {
+  position: absolute;
+  z-index: 1;
+  min-height: 84px;
+  max-height: 300px;
+  background: white;
+  box-shadow: 0px 3px 10px #a2a2a2;
+  padding: 5px;
+}
+
+.btn {
+  background-color: #2fa087 !important;
+  color: white;
+}
+
+.invalidInput:active {
+  color: #5c6873;
+  background-color: #fff;
+  border-color: #f86c6b;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(248, 108, 107, 0.25);
+}
+
+.form-date {
+  width: calc(100% - 20px);
+  height: calc(1.5em + 0.75rem);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #5c6873;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-date[showHora="true"] {
+  width: calc(100% - 40px);
+}
+
+.form-date[readonly] {
+  background-color: white;
+  opacity: 1;
+}
+
+.form-date:focus {
+  color: #5c6873;
+  background-color: #fff;
+  border-color: white;
+  outline: 0;
+  box-shadow: 0 0 0 0rem white;
+}
+
+.show_time {
+  display: inline-block;
+  width: 20px;
+}
+
+.show_time:hover {
+  transform: scale(1.2);
+  color: #2fa087;
+  cursor: pointer;
+}
+
+.clear_date {
+  display: contents;
+  color: #e20101;
+  font-size: 10pt;
+  width: 20px;
+  cursor: pointer;
+}
+
+.clear_date:hover {
+  font-size: medium;
+}
+
+/****FIN INPUT DATE *******/
+
+/******RICH EDITOR*********/
+.rich-text {
+  border: 1px solid #f86c6b;
+  .ql-container {
+    border: 0px;
+  }
+}
+
+.rich-text:active {
+  color: #5c6873;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(248, 108, 107, 0.25);
+}
+
+.border-rich-text {
+  border: 1px solid #bfbfbf;
+}
+
+/****FIN RICH EDITOR *******/

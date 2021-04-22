@@ -1,0 +1,62 @@
+<div class="row no-gutters">
+    <div class="col-md-12">
+        <header class="banner">
+            <div class="logo">
+                <img src="{{cdn}}images/logoudenar.svg" class="img-logo">
+            </div>
+        </header>
+        <nav class="navbar1 navbarsin">
+            <div class="diagonal"></div>
+            <ul class="nav3 navbar-nav3">
+                <li class="iconosmenu">
+                    <a href="#">
+                        <img src="{{cdn}}images/dashboard.svg" class="tam_icono">
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="nav4 navbar-nav4">
+                <li class="nav-item dropdown usermenudrop" dropdown placement="bottom right">
+                    <a class="mi-navlink" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+                        <span class="user-name">{{nombre}}</span>
+                        <img src="{{cdn}}images/avatar.svg" class="iconodrop ">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                        <li class="user-header">
+                            <img src="{{cdn}}images/avatar.svg" alt="User Image">
+                            <p>
+                                {{nombre}}
+                                <span class="num_cedula">
+                  <small>Usuario: 123456633</small>
+                </span>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <a href="#" class="link-user-footer conHover" ng-click="navvm.logout()">Cambiar contraseña</a>
+                            <a href="#" class="link-user-footer conHover pull-right" ng-click="navvm.logout()">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="app-body">
+    <main class="main">
+        <br>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>
+
+<app-footer>
+    <div>
+        <strong>
+      Copyright &copy; {{year}}
+      <a href="https://ci.udenar.edu.co/">
+        Centro de Informática - Universidad de Nariño
+      </a>.
+    </strong> Todos los derechos reservados.
+    </div>
+</app-footer>

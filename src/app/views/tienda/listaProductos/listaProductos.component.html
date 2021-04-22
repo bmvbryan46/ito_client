@@ -1,0 +1,100 @@
+<div class="animated fadeIn">
+  <div class="card box-border-list">
+    <div class="card-header box-title-list">
+        <h3 class="box-title title_list"> <img src="{{cdn}}/images/lista.svg" class="icono-lateral">   {{msj.lst_productos}}</h3>
+    </div>
+
+    <div class="card-body tabla no-pad-top">
+      {{ msj.nom_modulo }}
+      <p-table
+        [value]="lstProductos"
+        [responsive]="true"
+        [paginator]="true"
+        [rows]="50">
+        <ng-template pTemplate="caption">
+          <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-4"></div>
+            <div class="col-xs-12 col-sm-3 col-md-4">
+              <button class="btn btnAdd" (click)="agregarProducto()">
+                <img src="{{cdn}}/images/crear.svg" class="icono-lateral">
+                {{ msj.btn_agregar }}
+              </button>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 no-pad-right">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+                <input class="form-control" id="input1-group1" type="text" name="input1-group1" placeholder="{{ msj.btn_buscar}}"
+                  autocomplete="username" (input)="dt.filterGlobal($event.target.value, 'contains')">
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr class="encabezados">
+              <th>Nombre</th>
+              <th>Valor</th>
+              <th>Cantidad</th>
+              <th>Marca</th>
+              <th>Opciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-producto >
+          <tr>
+            <td>
+              <span class="ui-column-title">Nombre</span>
+              {{ producto.nombre }}
+            </td>
+            <td>
+              <span class="ui-column-title">Valor</span>
+              {{ producto.valor }}
+            </td>
+            <td>
+              <span class="ui-column-title">Cantidad</span>
+              {{ producto.cantidad }}
+            </td>
+            <td>
+              <span class="ui-column-title">Marca</span>
+              {{ producto.Marca.nombre_marca }}
+            </td>
+            <td>
+              <button class="btn btn-xs btn-primary" (click)="detalle(producto)">{{msj.lbl_ver}}</button>&nbsp;
+              <button class="btn btn-xs btn-warning" (click)="actualizar(producto)">{{msj.lbl_act}}</button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr class="etiqueta">
+            <td colspan="5">{{msj.etq_prod}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <ng-template #modalupt>
+    <div class="modal-header bg-success">
+      <h4 class="modal-title pull-left"><strong>mi modal</strong></h4>
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="cerrarModal()"
+      >
+        <span aria-hidden="true"><i class="fa fa-times color-blanco"></i></span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label>Nombre</label>
+      <p>
+        {{ productoSel.nombre }}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" (click)="cerrarModal()">Cerrar</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,76 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+      <div class="box border_top">
+        <div class="box-header">
+          <!-- <img src="{{ cdn }}/images/crear_color.svg" class="icono_titulos" /> -->
+          <p class="letraHeadPanel"><b>Historico
+              {{med.nombre}}&nbsp;-&nbsp;{{med.IotMarcaDispositivoMedida.IotTipoDispositivo.nombre}}</b>
+      </p>
+        </div>
+ <div class="box-body body-form">
+<form [formGroup]="medidoresForm">
+    <div class="row">
+    <div class='col-sm-6'>
+      <app-input-date xname='fec_ini' formControlName="fec_ini" [xform]="medidoresForm" xtooltip="requerido" xtooltip="{{msj.too_fec_ini}}" titulo="{{msj.lbl_fec_ini}}" [showHora]="true"   required></app-input-date>
+    </div>
+    <div class='col-sm-6'>
+      <app-input-date xname='fec_fin' formControlName="fec_fin" [xform]="medidoresForm" xtooltip="requerido" xtooltip="{{msj.too_fec_fin}}" titulo="{{msj.lbl_fec_fin}}" [showHora]="true"  required></app-input-date>
+    </div>
+  </div>
+    </form>
+   </div>
+   <div class="box-footer">
+      <div class="pull-right">
+        <button type="button" class="btn btnSave" (click)="buscar()">
+          <img src="{{ cdn }}/images/busqueda.svg" class="icono-lateral" />
+          {{ msj.btn_buscar }}
+        </button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-panel *ngIf="!data_g">
+    <h3 class="box-title title_box">Debe seleccionar una fecha incial y una fecha final para visualizar las gráficas</h3>
+</p-panel>
+<p-panel *ngIf="data_g">
+    <!-- *************************************HEADER***************************************** -->
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <!-- <p class="letraHeadPanel"><b>Historico
+                            {{med.nombre}}&nbsp;-&nbsp;{{med.IotMarcaDispositivoMedida.IotTipoDispositivo.nombre}}</b>
+                    </p> -->
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <!-- *************************************FIN HEADER***************************************** -->
+    <br>
+
+
+    <div *ngFor="let item of grph_data" class="flex">
+        <div align="center">
+            <p class="letraHeadPanel">
+                <b>
+                    <h3>{{item.title}}</h3>
+                </b>
+            </p>
+        </div>
+
+        <div class="flex-item">
+            <div style="display: block;">
+                <canvas baseChart width="400" height="150" [datasets]="item.data" [labels]="item.labels"
+                    [options]="lineChartOptions" [colors]="item.colors"
+                    [chartType]="lineChartType"
+                    ></canvas>
+            </div>
+        </div>
+        <br>
+    </div>
+
+</p-panel>

@@ -1,0 +1,51 @@
+<!-- ************************************FORMATO PARA FORMULARIOS  ******************************-->
+<div class="form-group" *ngIf="simple == false">
+
+  <label class="control-label"> <span class="fa fa-question-circle" tooltip={{xtooltip}}></span>{{titulo}}<span
+      *ngIf="control?.hasError('required')">*</span>&nbsp;</label>
+  <div class='pos-rel'>
+    <input #input type="{{xtype}}" class="form-control"
+      [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)"
+      placeholder="{{xplaceholder}}" (keyup)="changeInput(input.value)" (click)="onClick(input.value);"
+      [disabled]="xdisabled == true" value={{inputVal}}>
+
+    <div (clickOutside)='outside()' [hidden]="input.value.length < 2 || !isListItem" class="dropdown_container">
+      <div class="acomplete_search" *ngIf="isSearch == true">Buscando....</div>
+      <div *ngFor="let item of items; let first = first" class='state' [class.state_first]="first == true"
+        (click)="selectItem(item);">
+        <div class='title_style' [ngClass]="{'without_Border': !listSubTitulo}">{{item[listTitulo]}}</div>
+        <div class='subtitle_style' *ngFor="let sub of subtitulos">
+          {{item[sub]}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="error_section">
+    <div class='error_style' *ngIf="!control?.valid && (control?.dirty || xform?.submited == true)">
+      * Seleccione una opción
+    </div>
+  </div>
+</div>
+<!-- ************************************FIN  FORMATO PARA FORMULARIOS  ******************************-->
+
+<!-- ************************************ FORMATO GENERAL  ******************************-->
+<div *ngIf="simple == true" class='pos-rel  simple'>
+  <input #input type="{{xtype}}" class="form-control"
+    [class.invalidInput]="!control?.valid  && (control?.dirty || xform?.submited == true)"
+    placeholder="{{xplaceholder}}" (keyup)="changeInput(input.value)" (click)="onClick(input.value);"
+    [disabled]="xdisabled == 'true'" value={{inputVal}}>
+
+  <div (clickOutside)='outside()' [hidden]="input.value.length < 2 || !isListItem" class="dropdown_container">
+    <div class="acomplete_search" *ngIf="isSearch == true">Buscando....</div>
+    <div *ngFor="let item of items; let first = first" class='state' [class.state_first]="first == true"
+      (click)="selectItem(item);">
+      <div class='title_style' [ngClass]="{'without_Border': !listSubTitulo}">{{item[listTitulo]}}</div>
+      <div class='subtitle_style' *ngFor="let sub of subtitulos">
+        {{item[sub]}}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ************************************FIN FORMATO GENERAL  ******************************-->

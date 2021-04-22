@@ -1,0 +1,141 @@
+<p-panel>
+    <!-- *************************************HEADER***************************************** -->
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Historicos Dispositivo {{dispositivo.IotDispositivo.ubicacion | titlecase}}</b> {{dispositivo.IotDispositivo.descripcion | titlecase}}</p>
+
+                </div>
+            </div>
+        </div>
+    </p-header>
+
+    <div _ngcontent-c2="" class="col-xs-12 col-sm-7 col-md-7">
+        <button _ngcontent-c2="" class="btn btnAdd" (click)="redireccion(2)"><img _ngcontent-c2="" class="icono-lateral" src="../../../../assets/images/dashboard.svg" > Seleccionar dispositivo </button>
+        <button _ngcontent-c2="" class="btn btnAdd" (click)="redireccion(1)"><img _ngcontent-c2="" class="icono-lateral" src="../../../../assets/images/ver_blanco.svg" > Tiempo real </button>
+    </div>
+    <!-- *************************************FIN HEADER***************************************** -->
+    <br>
+    <br>
+
+    <p-table #dt [columns]="cols" [value]="ingresos" [responsive]="true" [resizableColumns]="true" [paginator]="true" [rows]="10" columnResizeMode="expand" dataKey="id_registro_rfid">
+
+
+        <ng-template pTemplate="caption">
+            <div class="row">
+                <!-- *********  SELECCIONAR AÑO *********** -->
+                <div class="col-xs-12 col-sm-5 col-md-4 no-padding">
+
+                </div>
+                <!-- ********FIN SELECCIONAR AÑO *********** -->
+                <div class="col-xs-12 col-sm-5 col-md-4 no-padding"></div>
+                <!-- ********** BUSCADOR  *********** -->
+
+                <div class="col-xs-12 col-sm-4 col-md-4 no-padding fix-padding">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                  <i class="fa fa-search"></i>
+                </span>
+                        </div>
+                        <input class="form-control" id="input1-group1" type="text" name="input1-group1" placeholder="Buscar" autocomplete="username" (input)="dt.filterGlobal($event.target.value, 'contains')">
+                    </div>
+                </div>
+                <!-- ******* FIN BUSCADOR  *********** -->
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+            <!-- *********************************************TABLE HEADER *************************************** -->
+            <tr>
+
+                <th pSortableColumn="fecha_hora" pResizableColumn>
+                    Fecha registro
+                    <p-sortIcon field="fecha_hora" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="estado" pResizableColumn>
+                    Estado
+                    <p-sortIcon field="estado" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="placa" pResizableColumn>
+                    Elemento
+                    <p-sortIcon field="placa" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="num_identificacion" pResizableColumn>
+                    Identificación
+                    <p-sortIcon field="num_identificacion" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="responsable" pResizableColumn>
+                    Responsable
+                    <p-sortIcon field="responsable" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <!--
+                <th pSortableColumn="identificacion" pResizableColumn>
+                    Identificacón propietario
+                    <p-sortIcon field="identificacion" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="nombre" pResizableColumn>
+                    Nombre propietario
+                    <p-sortIcon field="nombre" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                -->
+                <!-- <th class="td-opt"></th> -->
+            </tr>
+            <!-- *******************************************FIN TABLE HEADER *************************************** -->
+
+            <!-- ******************************************** TABLE FILTER *************************************** -->
+            <!--  <tr>
+             <th [ngSwitch]="'id_registro_rfid'">
+            <p-dropdown *ngSwitchCase="'id_registro_rfid'" appendTo="body" [options]="unidades" [style]="{'width':'100%'}"
+              (onChange)="dt.filter($event.value,'nombre_unidad', 'equals')">
+            </p-dropdown>
+          </th>
+            <th class="td-opt"></th>
+        </tr> -->
+            <!-- ******************************************* FIN TABLE FILTER *************************************** -->
+        </ng-template>
+
+        <!-- ******************************************** TABLE BODY *************************************** -->
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+
+                <td>{{rowData.fecha_hora | date: 'yyyy-MM-dd HH:MM'}}</td>
+                <td>{{rowData.estado}}</td>
+                <td *ngIf="rowData.IotElemento.IotElementoVehiculo">Placa vehiculo:&nbsp;{{rowData.IotElemento.IotElementoVehiculo.IotVehiculo.placa}}</td>
+                <td *ngIf="rowData.IotElemento.IotElemetoBien">Detalle bien:&nbsp;{{rowData.IotElemento.IotElemetoBien.AlmacBien.detalle}}</td>
+                <td>{{rowData.num_identificacion}}</td>
+                <td>{{rowData.responsable}}</td>
+                <!--<td *ngIf="rowData.IotElemento.IotElementoVehiculo">{{rowData.IotElemento.IotElementoVehiculo.SegurUsuario.identificacion}}</td>
+                <td *ngIf="rowData.IotElemento.IotElementoVehiculo">{{rowData.IotElemento.IotElementoVehiculo.SegurUsuario.nombre}} {{rowData.IotElemento.IotElementoVehiculo[0].SegurUsuario.apellido}}</td>-->
+            </tr>
+        </ng-template>
+        <!-- ******************************************* FIN TABLE BODY *************************************** -->
+    </p-table>
+
+
+</p-panel>
+<!-- <p-table [columns]="cols" [value]="ingresos" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table> -->

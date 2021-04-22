@@ -1,0 +1,77 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+      <div class="box border_top">
+        <div class="box-header">
+          <img src="{{ cdn }}/images/crear_color.svg" class="icono_titulos" />
+          <h3 class="box-title title_box">{{ msj.tl_crear_prod }}</h3>
+        </div>
+        <div class="box-body body-form">
+          <form #solicitudTalenForm="ngForm" name='solicitudTalenForm' [formGroup]="form">
+            <div class="row">
+              <div class='col-sm-6'>
+                <app-select xname='id_tipo_vinculacion' formControlName="id_tipo_vinculacion" [xform]=form [data]="lst"
+                  xval='key' xopt='val' xtooltip="requerido" xtooltip="{{msj.men}}" titulo="{{msj.tl_vin}}" required>
+                </app-select>
+              </div>
+              <div class='col-sm-6'>
+                <app-input-acomplete xname='id_cargo' formControlName="id_cargo" [xform]=form xtype="text"
+                  xtooltip="{{msj.men}}" titulo="{{msj.tl_den}}" ruta='getCargos' listTitulo='cargo_nombre' required>
+                </app-input-acomplete>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='col-sm-6'>
+                <app-input xname='telefono' formControlName="telefono" [xform]=form xtype="text" xtooltip="{{msj.men}}"
+                  titulo="{{msj.lbl_telf}}" mPattern="Debe escribir solo números" pattern="[1-9][0-9]*" xminlength="1"
+                  xmaxlength="4" required></app-input>
+              </div>
+              <div class='col-sm-6'>
+                <app-input xname='cantidad_solicitada' formControlName="cantidad_solicitada" [xform]=form xtype="number"
+                  xtooltip="{{msj.men}}" titulo="{{msj.tl_cant}}" xmin="2" xmax="5" required></app-input>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='col-sm-6'>
+                <app-input xname='email' formControlName="email" [xform]=form xtype="email" xtooltip="{{msj.men}}"
+                  titulo="{{msj.lbl_email}}" required></app-input>
+              </div>
+              <div class='col-sm-6'>
+                <app-text-area xname='competencias_tecnicas' xtooltip="{{msj.men}}" [xform]=form
+                  formControlName="competencias_tecnicas" titulo="{{msj.tl_comp}}" required>
+                </app-text-area>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='col-sm-6'>
+                <app-input-date xname='fecha_nacimiento' formControlName="fecha_nacimiento" [xform]=form
+                  xtooltip="{{msj.men}}" titulo="{{msj.tl_fec}}" required></app-input-date>
+              </div>
+
+              <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                <app-input-file xname='fotografia' formControlName="fotografia" [xform]=form xtooltip="{{msj.men}}"
+                  titulo="{{msj.tl_foto}}" xaccept='.jpg' input_title='{{msj.etq_subir}}' xmultiple='true' xnumfiles="3" required>
+                </app-input-file>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="box-footer">
+          <div class="pull-right">
+            <button type="button" class="btn btnSave" (click)="guardar()">
+              <img src="{{ cdn }}/images/guardar.svg" class="icono-lateral" />
+              {{ msj.btn_guardar }}
+            </button>
+            <button type="button" class="btn btnCancel" (click)="cancelar()">
+              <img src="{{ cdn }}/images/cancelar.svg" class="icono-lateral" />
+              {{ msj.btn_cancel }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

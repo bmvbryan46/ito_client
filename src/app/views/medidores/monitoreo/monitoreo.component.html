@@ -1,0 +1,39 @@
+<p-panel>
+    <!-- *************************************HEADER***************************************** -->
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Monitoreo
+                            {{med.nombre}}&nbsp;-&nbsp;{{med.IotMarcaDispositivoMedida.IotTipoDispositivo.nombre}}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <!-- *************************************FIN HEADER***************************************** -->
+    <br>
+
+
+    <div *ngFor="let item of grph_data" class="flex">
+        <div align="center">
+            <p class="letraHeadPanel">
+                <b>
+                    <h3>{{item.title}}</h3>
+                </b>
+            </p>
+        </div>
+
+        <div class="flex-item">
+            <div style="display: block;">
+                <canvas baseChart width="400" height="150" [datasets]="item.data" [labels]="item.labels"
+                    [options]="lineChartOptions" [colors]="item.colors"
+                    [chartType]="lineChartType" 
+                    ></canvas>
+            </div>
+        </div>
+        <br>
+    </div>
+
+</p-panel>

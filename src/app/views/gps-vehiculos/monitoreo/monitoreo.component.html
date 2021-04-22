@@ -1,0 +1,143 @@
+<!-- <div class="animated fadeIn">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+  <form #vehiculoGpsForm="ngForm" name='vehiculoGpsForm' [formGroup]="vehiculoGpsForm">
+    <div class="row">
+      <div class='col-sm-6'>
+        <app-select xname='id_vehiculo_gps' formControlName="id_vehiculo_gps" [xform]=vehiculoGpsForm [data]="vehiculosGps"
+          xval='id_vehiculo_gps' xopt='modelo_gps' xtooltip="requerido" xtooltip="{{msj.men}}" titulo="{{msj.tl_vin}}" required>
+        </app-select>
+      </div>
+    </div>
+  </form>
+  </div>
+  </div>
+</div> -->
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+      <div class="box border_top">
+        <div class="box-header">
+          <img src="{{ cdn }}/images/crear_color.svg" class="icono_titulos" />
+          <h3 class="box-title title_box"></h3>
+        </div>
+<!--  <form [formGroup]="_vehiculoGpsForm">
+    <select formControlName="countryControl">
+      <option [value]="country" *ngFor="let country of countries">             {{country}}</option>
+    </select>
+   </form> -->
+ <div class="box-body body-form">
+<form [formGroup]="vehiculosGpsForm">
+       <app-select xname='id_vehiculo_gps' formControlName="id_vehiculo_gps" [xform]="vehiculosGpsForm" [data]="vehiculosGps"
+        xval='id_vehiculo_gps' xopt='modelo_gps' xtooltip="requerido" xtooltip="{{msj.too_veh}}" titulo="{{msj.lbl_veh}}" required>
+          <!-- <option [value]="vehiculo" *ngFor="let vehiculo of vehiculosGps">{{vehiculo.modelo_gps}}</option> -->
+        </app-select>
+       </form>
+ <!--<form #vehiculoGpsForm="ngForm" name='vehiculoGpsForm' [formGroup]="vehiculoGpsForm">
+       <div class="row">
+        <div class='col-sm-6'>
+          <app-select xname='id_vehiculo_gps' formControlName="id_vehiculo_gps" [xform]=vehiculoGpsForm [data]="vehiculosGps"
+            xval='id_vehiculo_gps' xopt='val' xtooltip="requerido" xtooltip="{{msj.men}}" titulo="{{msj.tl_vin}}" required>
+          </app-select>
+        </div>
+        <div class='col-sm-6'>
+          <app-input-acomplete xname='id_cargo' formControlName="id_cargo" [xform]=form xtype="text"
+            xtooltip="{{msj.men}}" titulo="{{msj.tl_den}}" ruta='getCargos' listTitulo='cargo_nombre' required>
+          </app-input-acomplete>
+        </div>
+     </div>
+    </form>-->
+   </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <p-panel>
+
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Monitoreo localización vehícular</b></p>
+                </div>
+            </div>
+        </div>
+    </p-header>
+
+    <br>
+    <button type="button" (click)="setCenter()">Centrar</button>
+    <button type="button" (click)="drawPolyline()">Dibujar</button>
+    <div id="map" class="map"></div>
+    <div class="row">
+    </div>
+
+    <div class="row" *ngIf="false">
+
+    </div>
+
+</p-panel> -->
+<p-panel *ngIf="vehiculoSeleccionado">
+    <p-header>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-inline">
+                    <img src="{{cdn}}/images/lista.svg" class="icono_titulos"> &nbsp;
+                    <p class="letraHeadPanel"><b>Recorrido vehiculo</b></p>
+
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <agm-map #gm [latitude]='latitude' [longitude]='longitude' [zoom]="18" *ngIf="vehiculoSeleccionado" >
+
+        <agm-polyline  [strokeColor]="'#00923f'">
+            <ng-container *ngFor="let i of vehiculoSeleccionado.IotUbicacionVehiculos">
+            <!-- <agm-polyline-point *ngIf = "i.speed < maxSpeed " [latitude]="i.latitude" [longitude]="i.longitude"> -->
+            <agm-polyline-point [latitude]="i.ubicacion.x" [longitude]="i.ubicacion.y">
+            </agm-polyline-point>
+        </ng-container>
+        </agm-polyline>
+        <agm-marker #m (mouseOver)="onMouseOver(infoWindow,gm,p)" (mouseOut)="onMouseOut(p,infoWindow)" [animation]="p.animation" [label]="p.labelOptions" [iconUrl]="p.iconUrl" *ngFor="let p of vehiculoSeleccionado.IotUbicacionVehiculos" [latitude]="p.ubicacion.x" [longitude]='p.ubicacion.y'
+            >
+            <agm-info-window #infoWindow>
+
+                <div>
+                    <h6><b>{{p.fec_ubicacion | date: 'dd/MM/yyyy HH:mm'}}</b></h6>
+                    <small><b>Coordenadas:</b><br>({{p.ubicacion.x}}, {{p.ubicacion.y}})</small>
+                </div>
+                <br>
+                <div>
+                    <!-- <button pButton type="button" label="{{carousel.btnH}}" icon="fa fa-fw fa-file-excel-o" (click)="goToHistorics(medidor)"></button>&nbsp;
+                    <button pButton type="button" label="{{carousel.btnM}}" icon="fa fa-fw fa-bar-chart" (click)="goToMonitoring(medidor)"></button>  -->
+                </div>
+
+            </agm-info-window>
+        </agm-marker>
+        <!-- <agm-marker #m (mouseOver)="onMouseOver(infoWindow,gm,medidor)" (mouseOut)="onMouseOut(medidor)" [animation]="medidor.animation" [label]="medidor.labelOptions" [iconUrl]="medidor.iconUrl" *ngFor="let medidor of elements" [latitude]="medidor.ubicacion.x" [longitude]='medidor.ubicacion.y'
+            (click)="goToMonitoring(medidor)">
+            <agm-info-window #infoWindow>
+
+                <div>
+                    <h6><b>{{medidor.nombre}}</b></h6>
+                    <small><b>{{medidor.IotMarcaDispositivoMedida.IotTipoDispositivo.descripcion}}</b> -{{medidor.IotMarcaDispositivoMedida.IotTipoDispositivo.descripcion}}</small>
+                </div>
+                <br>
+                <div>
+                    <button pButton type="button" label="{{carousel.btnH}}" icon="fa fa-fw fa-file-excel-o" (click)="goToHistorics(medidor)"></button>&nbsp;
+                    <button pButton type="button" label="{{carousel.btnM}}" icon="fa fa-fw fa-bar-chart" (click)="goToMonitoring(medidor)"></button>
+                </div>
+
+            </agm-info-window>
+        </agm-marker>
+        <agm-marker [label]="labelOptions2" [iconUrl]="iconUrl" [latitude]="latitude2" [longitude]='longitude2'>
+        </agm-marker> -->
+    </agm-map>
+</p-panel>
+<p-panel *ngIf="!vehiculoSeleccionado">
+  <p>No ha seleccionado un vehículo o No hay ubícaciones del vehiculo por mostrar el dia de hoy</p>
+</p-panel>

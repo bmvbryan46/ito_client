@@ -1,0 +1,13 @@
+<section class="mycontent">
+    <div id="my-container" class="dashboard clearfix">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" *ngFor="let item of dispositivos; let i = index">
+                <div class="tile {{estado_formulario >= 0 ? 'slideTextLeft':'disabled-class'}}">
+                    <div class="opcion" (click)="redireccion(item)">
+                        <app-imagen-menu [titulo]="item.IotDispositivo.descripcion"></app-imagen-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
